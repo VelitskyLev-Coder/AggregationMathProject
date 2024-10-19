@@ -4,6 +4,7 @@ from ex1 import build_ex1
 from ex3 import build_ex3
 from ex4 import build_ex4
 from ex5 import build_ex5
+from ex6 import build_ex6
 
 
 def run_functions_in_process_pool(functions):
@@ -27,4 +28,8 @@ def run_functions_in_process_pool(functions):
 
 
 if __name__ == '__main__':
-    run_functions_in_process_pool([build_ex1, build_ex3, build_ex4, build_ex5])
+    run_functions_in_process_pool([build_ex1,
+                                   build_ex3,
+                                   build_ex4,
+                                   build_ex5,
+                                   build_ex6])

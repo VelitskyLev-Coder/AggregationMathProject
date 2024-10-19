@@ -8,7 +8,7 @@ from typing import Optional
 def assemble_video(input_pattern: str, output_path: str, fps: int) -> Optional[None]:
     """
     Assembles a video from PNG files following the format name_{index}.png.
-    Uses all images found and creates a video with the specified FPS.
+    Adds a 5-second duration for the first and last frames.
 
     Args:
         input_pattern (str): The glob pattern for the input files (e.g., "path/to/files/name_*.png").
@@ -47,7 +47,14 @@ def assemble_video(input_pattern: str, output_path: str, fps: int) -> Optional[N
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec for mp4 format
     video_writer = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
-    # Step 5: Loop through the sorted images and write frames to the video
+    # Calculate the number of frames to hold the first and last frames for 5 seconds
+    hold_frames = fps * 5  # 5 seconds of hold time
+
+    # Step 5: Add the first frame for 5 seconds (repeated)
+    for _ in range(hold_frames):
+        video_writer.write(first_frame)
+
+    # Step 6: Loop through the sorted images and write frames to the video
     for img_path in sorted_files:
         frame = cv2.imread(img_path)
 
@@ -57,6 +64,15 @@ def assemble_video(input_pattern: str, output_path: str, fps: int) -> Optional[N
 
         video_writer.write(frame)
 
-    # Step 6: Release the video writer
+    # Step 7: Add the last frame for 5 seconds (repeated)
+    last_frame = cv2.imread(sorted_files[-1])
+
+    if last_frame is not None:
+        for _ in range(hold_frames):
+            video_writer.write(last_frame)
+    else:
+        print(f"Error reading the last image: {sorted_files[-1]}")
+
+    # Step 8: Release the video writer
     video_writer.release()
     print(f"Video successfully saved to {output_path}")

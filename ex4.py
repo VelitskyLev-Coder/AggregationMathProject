@@ -10,7 +10,7 @@ def build_ex4_example(n, n_walkers, sticky_points, distribution_type, example_na
 
     grid = aggregate(n, n_walkers, save_plot_dir=save_dir,
                      save_plot_name=f'{distribution_type}_n_{n}_walkers_{n_walkers}_sticky_{len(sticky_points)}',
-                     sticky_points=sticky_points, create_video=False,
+                     sticky_points=sticky_points, create_video=True,
                      normal_distribution=normal_distribution)
 
 

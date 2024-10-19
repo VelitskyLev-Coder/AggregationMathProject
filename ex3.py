@@ -13,7 +13,8 @@ def build_ex3():
     for ratio in ratio_values:
         walkers = round(n * n * ratio)
         grid = aggregate(n, walkers, save_plot_dir='target\\ex3',
-                         save_plot_name=f'ratio_{ratio:0.2f}', sticky_points=[(n//2, n//2)])
+                         save_plot_name=f'ratio_{ratio:0.2f}', sticky_points=[(n//2, n//2)],
+                         create_video=True)
         _, _, _, slope = box_count(n, grid)
         slopes.append(slope)
 
