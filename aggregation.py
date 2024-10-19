@@ -74,6 +74,8 @@ def plot_hexagonal(grid, save_plot_name=None, save_plot_dir=None, iteration=None
         ax.set_title(f'{save_plot_name}')
         fig.savefig(save_path)
 
+    plt.close(fig)
+
 
 def aggregate(n: int,
               n_walkers: int,
