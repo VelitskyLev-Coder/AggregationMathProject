@@ -15,7 +15,6 @@ def build_ex6():
                          neighbor_type=NeighborType.SIX_NEIGHBORS_TRIANGULAR,
                          create_video=True)
         plt.imshow(grid)
-        plt.show()
         _, _, slope = mas_radius(grid, n,
                                  center_x=n // 2,
                                  center_y=n // 2,
